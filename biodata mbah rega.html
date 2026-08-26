@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Biodata - Nama Kamu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", Arial, sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #cbd5e1;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #38bdf8;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+            background:
+                radial-gradient(circle at top, #164e63, transparent 40%),
+                #0f172a;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #38bdf8;
+            box-shadow: 0 0 40px rgba(56,189,248,0.4);
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(35px, 6vw, 60px);
+            color: white;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 18px;
+            margin: 12px 0 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #38bdf8;
+            color: #082f49;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(56,189,248,0.3);
+        }
+
+        /* SECTION */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            color: white;
+        }
+
+        .section-title p {
+            color: #64748b;
+        }
+
+        /* BIODATA */
+        .biodata {
+            max-width: 900px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .data-card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+
+        .data-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+
+        .data-card strong {
+            display: block;
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+
+        /* ABOUT */
+        .about {
+            max-width: 900px;
+            margin: auto;
+            background: #1e293b;
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+
+        .about p {
+            color: #cbd5e1;
+        }
+
+        /* SKILL */
+        .skills {
+            max-width: 900px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .skill {
+            background: #1e293b;
+            padding: 25px;
+            text-align: center;
+            border-radius: 18px;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-6px);
+            background: #243449;
+        }
+
+        .skill .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .skill h3 {
+            color: white;
+        }
+
+        .skill p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* PENDIDIKAN */
+        .timeline {
+            max-width: 800px;
+            margin: auto;
+            border-left: 3px solid #38bdf8;
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -40px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: #38bdf8;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #38bdf8;
+        }
+
+        .timeline-item h3 {
+            color: white;
+        }
+
+        .timeline-item span {
+            color: #38bdf8;
+            font-size: 14px;
+        }
+
+        .timeline-item p {
+            color: #94a3b8;
+        }
+
+        /* KONTAK */
+        .contact {
+            text-align: center;
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social a {
+            text-decoration: none;
+            color: #e2e8f0;
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 12px 20px;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .social a:hover {
+            color: #38bdf8;
+            border-color: #38bdf8;
+            transform: translateY(-3px);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #020617;
+            color: #64748b;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .biodata {
+                grid-template-columns: 1fr;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">MyProfile.</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#biodata">Biodata</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#pendidikan">Pendidikan</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+
+            <!-- GANTI FOTO DI SINI -->
+            <img
+                src="https://cdn.phototourl.com/free/2026-08-26-c728723f-4949-4eac-a2ac-34bff68ce51e.jpg"
+                alt="Foto Profil"
+                class="profile-img"
+            >
+
+            <h1>Halo, Saya <span>M.REGA PRATAMA</span></h1>
+
+            <p>
+                JASA CEK KODAM | JASA SANTET | JASA PELET
+            </p>
+
+            <a href="#biodata" class="btn">
+                Lihat Biodata
+            </a>
+        </div>
+    </section>
+
+    <!-- BIODATA -->
+    <section id="biodata">
+
+        <div class="section-title">
+            <h2>Biodata</h2>
+            <p>Informasi pribadi saya</p>
+        </div>
+
+        <div class="biodata">
+
+            <div class="data-card">
+                <strong>Nama Lengkap</strong>
+                M.REGA PRATAMA
+            </div>
+
+            <div class="data-card">
+                <strong>Nama Panggilan</strong>
+                MBAH REGA
+            </div>
+
+            <div class="data-card">
+                <strong>Tempat, Tanggal Lahir</strong>
+                LAMONGAN, 17 AGUSTUS 1945
+            </div>
+
+            <div class="data-card">
+                <strong>Jenis Kelamin</strong>
+                Laki-laki
+            </div>
+
+            <div class="data-card">
+                <strong>Alamat</strong>
+                TEMPURAN
+            </div>
+
+            <div class="data-card">
+                <strong>Agama</strong>
+                KRISLAM
+            </div>
+
+            <div class="data-card">
+                <strong>Status</strong>
+                DUKUN PELET/SANTET
+            </div>
+
+            <div class="data-card">
+                <strong>Kewarganegaraan</strong>
+                INDONESIA
+            </div>
+
+            <div class="data-card">
+                <strong>Hobi</strong>
+                NYANTET, ADU KODAM
+            </div>
+
+            <div class="data-card">
+                <strong>Cita-cita</strong>
+                MENJADI DUKUN TERKENAL
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TENTANG -->
+    <section id="tentang">
+
+        <div class="section-title">
+            <h2>Tentang Saya</h2>
+            <p>Kenali saya lebih dekat</p>
+        </div>
+
+        <div class="about">
+            <p>
+                Halo! Nama saya <b>M.REGA PRATAMA</b>.
+                Saya adalah seorang dukun yang memiliki ketertarikan
+                terhadap per kodam an, per santet an,per pelet an, dan berbagai
+                hal gaib. Saya senang mempelajari hal-hal gaib,
+                mencoba berbagai ilmu, serta mengembangkan kemampuan
+                untuk mencapai cita-cita saya menjadi dukun terkenal.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- KEAHLIAN -->
+    <section>
+
+        <div class="section-title">
+            <h2>BAKAT</h2>
+            <p>BAKAT SAYA SAYA PENDAM SENDIRI DAN TIDAK SAYA BERITAHU SIAPAPUN,KECUALI ORANG TERDEKAT SAYA</p>
+        </div>
+
+        <div class="skills">
+
+            <div class="skill">
+                <div class="icon">☠️</div>
+                <h3>KELEBIHAN</h3>
+                <p>SERING BER ADU ILMU GAIB DITEMPAT MISTIS</p>
+            </div>
+
+            <div class="skill">
+                <div class="icon">☠️</div>
+                <h3>KEKURANGAN</h3>
+                <p>TIDAK ADA KEKURANGAN,SOALNYA KELEBIHAN NYA BANYAK</p>
+            </div>
+
+            <div class="skill">
+                <div class="icon">☠️</div>
+                <h3>MOTIVASI</h3>
+                <p>SAYA INGIN MENAMBAH ILMU,ILMU MISTIS/ILMU YG SPEKTAKULER</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PENDIDIKAN -->
+    <section id="pendidikan">
+
+        <div class="section-title">
+            <h2>Pendidikan</h2>
+            <p>Riwayat pendidikan</p>
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <span>2025 - Sekarang</span>
+                <h3>SMA</h3>
+                <p>SMAKEM</p>
+            </div>
+
+            <div class="timeline-item">
+                <span>2022 - 2025</span>
+                <h3>MTs</h3>
+                <p>MTS MA'ARIF PUTER'</p>
+            </div>
+
+            <div class="timeline-item">
+                <span>2016 - 2022</span>
+                <h3>SD</h3>
+                <p>SDN PUTER 3</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak" class="contact">
+
+        <div class="section-title">
+            <h2>Hubungi Saya</h2>
+            <p>Temukan saya di media sosial</p>
+        </div>
+
+        <div class="social">
+            <a href="+6282337256748">📱 WhatsApp</a>
+       
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 M.REGA PRATAMA. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
